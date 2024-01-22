@@ -1,0 +1,33 @@
+@keyframes move {
+	0% {
+		transform: translateY(-10px);
+	}
+
+	100% {
+		transform: translateY(10px);
+	}
+}
+
+@responsive {
+	.animate-move {
+		animation: move 2s infinite ease alternate;
+	}
+}
+
+
+@keyframes movecontact {
+	from {
+		transform: translateY(-15px);
+	}
+
+	to {
+		transform: translateY(0px) scale(1.03);
+	}
+}
+
+@responsive {
+	.animate-movecontact {
+		object-fit: contain;
+		animation: move 2s infinite ease alternate;
+	}
+}
