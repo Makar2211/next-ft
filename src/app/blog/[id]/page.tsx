@@ -1,9 +1,8 @@
-
+import { Post } from "@/types";
 import Image from "next/image";
 
-
-async function getData() {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/post${1}`);
+async function getData(id: number) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -11,20 +10,16 @@ async function getData() {
   return res.json();
 }
 
-
-const PageId = async () => {
-    
-const data = await getData()
-console.log(data)
-  }
+const PageId = async ({ params }: any) => {
+  const data = await getData(params.id);
   return (
     <div className=" flex justify-center gap-40 ">
       <div className="relative">
-        <h1 className="text-3xl">1</h1>
-        <p className="text-2x mt-10">2</p>
+        <h1 className="text-3xl">{data.title}</h1>
+        <p className="text-2x mt-10">{data.body}</p>
         <div className="flex items-center gap-2 mt-10">
           <Image
-            src="https://img.freepik.com/free-photo/robot-handshake-human-background-futuristic-digital-age_53876-129770.jpg?w=1380&t=st=1686056951~exp=1686057551~hmac=5da557bfff0192720a1dfa7608b353322afcbfc038886c891ba296fd8fa7e97b"
+            src=""
             alt=""
             width={40}
             height={40}
@@ -38,7 +33,7 @@ console.log(data)
       </div>
       <div className="relative">
         <Image
-          src="https://img.freepik.com/free-photo/robot-handshake-human-background-futuristic-digital-age_53876-129770.jpg?w=1380&t=st=1686056951~exp=1686057551~hmac=5da557bfff0192720a1dfa7608b353322afcbfc038886c891ba296fd8fa7e97b"
+          src=""
           alt="full image"
           width={400}
           height={500}

@@ -1,10 +1,13 @@
 import { Post } from "@/types";
+import next from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 async function getData() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -25,7 +28,7 @@ const Blog = async () => {
         >
           <div className=" relative">
             <Image
-              src="https://img.freepik.com/free-photo/robot-handshake-human-background-futuristic-digital-age_53876-129770.jpg?w=1380&t=st=1686056951~exp=1686057551~hmac=5da557bfff0192720a1dfa7608b353322afcbfc038886c891ba296fd8fa7e97b"
+              src=""
               alt={post.title}
               width={400}
               height={250}
