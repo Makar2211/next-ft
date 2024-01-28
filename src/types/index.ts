@@ -1,8 +1,10 @@
 export interface Post {
-  userId: number;
-  id: number;
+  _id: string;
   title: string;
-  body: string;
+  desc: string;
+  image: string;
+  content: string;
+  username: string;
 }
 
 export interface Todos {

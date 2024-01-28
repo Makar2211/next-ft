@@ -9,7 +9,7 @@ const Button = ({ ...props }: ButtonProps) => {
   const { text, style } = props;
   return (
     <button
-      onClick={() => console.log("Logout")}
+      onClick={() => console.log("it is button component")}
       className={`text-white ${style} `}
     >
       {text}

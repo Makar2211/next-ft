@@ -3,7 +3,6 @@ import React from "react";
 
 import { portfolio } from "../../constants/index";
 import Image from "next/image";
-import categoryPageId from "./[id]/page";
 
 const Portfolio = () => {
   return (

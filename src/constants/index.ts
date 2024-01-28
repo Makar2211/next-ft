@@ -1,5 +1,7 @@
 import { PortfolioData } from "@/app/portfolio/[id]/page";
 
+export const localhost = "http://localhost:3000";
+
 export const links = [
   {
     id: 1,

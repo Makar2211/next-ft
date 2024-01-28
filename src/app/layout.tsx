@@ -4,6 +4,7 @@ import "./globals.scss";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Providers } from "./providers";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={inter.className}>
-          <div className="container">
-            <NavBar />
-            {children}
-            <Footer />
-          </div>
+          <AuthProvider>
+            <div className="container">
+              <NavBar />
+              {children}
+              <Footer />
+            </div>
+          </AuthProvider>
         </body>
       </Providers>
     </html>

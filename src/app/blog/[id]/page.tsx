@@ -1,8 +1,29 @@
+import { localhost } from "@/constants";
 import { Post } from "@/types";
+import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 
-async function getData(id: number) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = params.id;
+
+  const post = await fetch(`${localhost}/api/posts/${id}`).then((res) =>
+    res.json()
+  );
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+}
+
+async function getData(id: string) {
+  const res = await fetch(`${localhost}/api/posts/${id}`, {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -11,29 +32,29 @@ async function getData(id: number) {
 }
 
 const PageId = async ({ params }: any) => {
-  const data = await getData(params.id);
+  const data: Post = await getData(params.id);
   return (
     <div className=" flex justify-center gap-40 ">
       <div className="relative">
         <h1 className="text-3xl">{data.title}</h1>
-        <p className="text-2x mt-10">{data.body}</p>
+        <p className="text-2x mt-10">{data.desc}</p>
         <div className="flex items-center gap-2 mt-10">
           <Image
-            src=""
-            alt=""
+            src={data.image}
+            alt="image "
             width={40}
             height={40}
             className="object-cover rounded-[100%]"
           />
-          <span className="text-3xl ">Makar user Name</span>
+          <span className="text-3xl ">{data.username}</span>
         </div>
         <div className="mt-12 text-[20px] font-[300] text-dark">
-          <p className="text-2x">Another text</p>
+          <p className="text-2x">{data.content}</p>
         </div>
       </div>
       <div className="relative">
         <Image
-          src=""
+          src={data.image}
           alt="full image"
           width={400}
           height={500}
